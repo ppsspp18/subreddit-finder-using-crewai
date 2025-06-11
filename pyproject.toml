@@ -1,0 +1,24 @@
+[project]
+name = "subreddit_finder"
+version = "0.1.0"
+description = "subreddit_finder using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[tools]>=0.126.0,<1.0.0",
+    "praw>=7.8.1",
+]
+
+[project.scripts]
+subreddit_finder = "subreddit_finder.main:run"
+run_crew = "subreddit_finder.main:run"
+train = "subreddit_finder.main:train"
+replay = "subreddit_finder.main:replay"
+test = "subreddit_finder.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"

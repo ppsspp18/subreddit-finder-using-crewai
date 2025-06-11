@@ -1,0 +1,41 @@
+subreddit_discover_task:
+  description: >
+    1) discover subreddits based on {topic} by utilize {list_sub}
+    2) write two to three lines about the subreddits
+    3) write the discovered subreddits to a file named searched_reddit.md
+  expected_output: >
+    Output a list of subreddits related to {topic} and a file named searched_reddit.md
+  agent: subreddit_discover_agent
+
+fetch_posts_task:
+  description: >
+    1) utilize {first_data} to fetch the posts and comments for the subreddit "{first_subreddit}"
+    2) make this raw data reaadable for the user
+    3) formatted in a way that is easy to read and understand
+    4) create a file named post_and_comments_report.md
+  expected_output: >
+    Output a list of posts from the subreddit "{first_subreddit}" with their comments
+    utilize {first_data} to show the posts and comments in a readable format
+  agent: fetch_posts_agent
+
+lead_detection_task:
+  description: >
+    1) analyze the posts and comments for potential leads for the subreddit "{first_subreddit}"
+    2) utilize the content of the post and comment from the file {first_data}
+    2) identify potential leads based on the content of the posts and comments
+    3) green flag the posts that contain potential leads
+    4) red flag the posts that do not contain potential leads
+    5) present them in a readable format for the user
+    6) provide reasonning for the leads detected
+  expected_output: >
+    Output posts and comments with the red and green flags indicating potential leads
+    and the reason for the leads detected in a reaadable format
+  agent: lead_detector_agent
+
+csv_writer_task:
+  description: >
+    2) write the post with and detected leads in a readable format
+    1) write the detected leads to a CSV file named lead.csv in readable format
+  expected_output: >
+    Output a CSV file named lead.csv with the post and comments with the detected leads
+  agent: csv_writer_agent
